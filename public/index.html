@@ -8,14 +8,14 @@
 <body>
 <div class="container">
 <h1>Registration form</h1>
-<form>
-    <div class="form_input">
+<form action="/reg-data" method="post">
+    <div id= "name_input_container" class="form_input">
         <label for="Name_input">Enter your name</label>
-        <input type="text" id="Name_input" placeholder="Name">
+        <input name="username" type="text" id="Name_input" placeholder="Name">
     </div>
-    <div class="form_input">
+    <div id= "pass_input_container" class="form_input">
         <label for="Password_input">Enter your password</label>
-        <input type="password" id="Password_input" placeholder="Password">
+        <input name="password" type="password" id="Password_input" placeholder="Password">
     </div>
     <div class="form_input">
         <label for="Select_input">Choose usertype</label>
@@ -25,14 +25,11 @@
             <option value="user">User</option>
         </select>
     </div>
-    <button id="Submit-input" onclick="handler()">Submit button</button>
-    <input type="submit" value="Submit form">
+    <button id="Submit_input" type="submit">Submit form</button>
+
+
 </form>
 </div>
-<script type="text/javascript">
-    function handler() {
-        console.log("Hello world!")
-    }
-</script>
+<script src="script.js"></script>
 </body>
 </html>

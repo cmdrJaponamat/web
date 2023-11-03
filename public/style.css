@@ -1,3 +1,6 @@
+body{
+    background-color: #7F8183FF;
+}
 .container{
     width: 100%;
     height: 100%;
@@ -19,12 +22,15 @@ form{
     align-items: center;
     justify-items: center;
 }
-input[type=submit]{
+.input_error{
+    border-color: red;
+}
+button[type=submit]{
     width: 100%;
     height: 25px;
     background-color: cadetblue;
 }
-input[type=submit]:hover{
+button[type=submit]:hover{
     cursor: pointer;
     background-color: darkcyan;
 }
