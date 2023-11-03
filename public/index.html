@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="Day/Night_container">
+    <button id="Day/Night">Day/Night</button>
+</div>
 <div class="container">
 <h1>Registration form</h1>
 <form action="/reg-data" method="post">
@@ -19,7 +22,7 @@
     </div>
     <div class="form_input">
         <label for="Select_input">Choose usertype</label>
-        <select id="Select_input">
+        <select name="Usertype" id="Select_input">
             <option value="admin">Admin</option>
             <option value="moderator">Moderator</option>
             <option value="user">User</option>

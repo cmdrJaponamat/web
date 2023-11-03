@@ -1,70 +1,79 @@
 const nameInput = document.querySelector("#Name_input");
+const passInput = document.querySelector("#Password_input");
 const subButton = document.querySelector("#Submit_input");
 subButton.disabled = true;
-let nameValue;
+let nameResultOfCheck = {result: false};
+let passResultOfCheck = {result: false};
 
-nameInput.addEventListener("input", () => {
-        nameValue = nameInput.value;
-        console.log(nameValue);
-    }
-)
-nameInput.addEventListener("blur", () => {
-        if (!nameValue || nameValue.length < 3) {
-            nameInput.className = "input_error";
-            if (!document.querySelector("#error_message")) {
+function inputValidator(inputItem, valueLength, errorMessage, resultCheck){
+    let value;
+    inputItem.addEventListener("blur", () => {
+        value = inputItem.value
+        if (!value || value.length < valueLength) {
+            inputItem.className = "input_error";
+            if (!inputItem.parentElement.children.item(2)) {
                 const p = document.createElement("p");
                 p.id = "error_message";
-                p.textContent = "Username must be more then 3 character.";
-                document.querySelector("#name_input_container").append(p);
+                p.textContent = errorMessage;
+                inputItem.parentElement.append(p);
             }
+            resultCheck.result = false;
         }
         else {
-            nameInput.className = "";
-            if (document.querySelector("#error_message")) {
-                document.querySelector("#error_message").remove();
+            inputItem.className = "";
+            if (inputItem.parentElement.children.item(2)) {
+                inputItem.parentElement.children.item(2).remove();
             }
+            resultCheck.result = true;
         }
-    }
-)
-const passInput = document.querySelector("#Password_input");
-let passValue;
-passInput.addEventListener("input", () => {
-        passValue = passInput.value;
-    }
-)
-passInput.addEventListener("blur", () => {
-        if (!passValue || passValue.length < 5) {
-            passInput.className = "input_error";
-            if (!document.querySelector("#pass_error_message")) {
-                const p = document.createElement("p");
-                p.id = "pass_error_message";
-                p.textContent = "Password must be more then 5 character.";
-                document.querySelector("#pass_input_container").append(p);
-            }
-        }
-        else {
-            passInput.className = "";
-            if (document.querySelector("#pass_error_message")) {
-                document.querySelector("#pass_error_message").remove();
-            }
-        }
-    }
-)
+    });
+}
 
-subButton.addEventListener("mouseover", ()=> {
-    document.body.style.backgroundColor = "2472C1FF";
-    if (nameValue && passValue && nameValue.length>3 && passValue>5) {
-        subButton.disabled = false;
-        subButton.className = "";
+function sumOfCheck(nameResult, passResult){
+    return (nameResult && passResult);
+}
+function buttonActivator(nameResultOfCheck, passResultOfCheck){
+    function setupErrorState(){
+        let summOfCheckBool = sumOfCheck(nameResultOfCheck.result, passResultOfCheck.result);
+        if (summOfCheckBool) {
+            subButton.disabled = false;
+            subButton.className = "";
+            passInput.className = "";
+            nameInput.className = "";
+            return false;
+        } else {
+            subButton.className = "input_error";
+            subButton.disabled = true;
+            return true;
+        }
+
+    }
+    subButton.addEventListener("mouseover", ()=> {
+        setupErrorState();})
+    nameInput.addEventListener("blur", () => {
+        setupErrorState();})
+    passInput.addEventListener("blur", () => {
+        setupErrorState();})
+}
+
+inputValidator(nameInput, 3,
+    "Username length must be more then 3 character", nameResultOfCheck);
+inputValidator(passInput, 5,
+    "Password length must be more then 5 character", passResultOfCheck);
+buttonActivator(nameResultOfCheck, passResultOfCheck);
+
+const styleButton = document.getElementById("Day/Night");
+let styleState = 2;
+styleButton.addEventListener("click", () => {
+    if (styleState == 1) {
+        document.body.style.background = 'darkgray';
+        styleState = 2;
+        console.log("if", styleState);
     }
     else {
-        subButton.className = "input_error";
-        passInput.className = "input_error";
-        nameInput.className = "input_error";
-        subButton.disabled = true;
-    }
-})
+        document.body.style.background = 'antiquewhite';
+        console.log("else", styleState);
+        styleState = 1;
 
-function handler() {
-    console.log("Hello world!");
-}
+    }
+});
