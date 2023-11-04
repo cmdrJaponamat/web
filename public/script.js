@@ -65,14 +65,14 @@ buttonActivator(nameResultOfCheck, passResultOfCheck);
 const styleButton = document.getElementById("Day/Night");
 let styleState = 2;
 styleButton.addEventListener("click", () => {
-    if (styleState == 1) {
+    if (styleState === 1) {
         document.body.style.background = 'darkgray';
+        styleButton.textContent = "Day";
         styleState = 2;
-        console.log("if", styleState);
     }
     else {
         document.body.style.background = 'antiquewhite';
-        console.log("else", styleState);
+        styleButton.textContent = "Night";
         styleState = 1;
 
     }

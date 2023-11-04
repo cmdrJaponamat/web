@@ -1,5 +1,9 @@
 body{
-    background-color: #191969;
+    background-color: darkgray;
+}
+.day-night-button{
+    width: 100px;
+    cursor: pointer;
 }
 .container{
     width: 100%;
